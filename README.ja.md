@@ -7,7 +7,16 @@
 ## クイックスタート
 
 ```bash
-npx sayx こんにちは
+npx @shinshin86/sayx こんにちは
+```
+
+```bash
+npm install -g @shinshin86/sayx
+sayx こんにちは
+```
+
+```bash
+npm install @shinshin86/sayx
 ```
 
 設定ファイルがない場合は組み込み既定値を使います。

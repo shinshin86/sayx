@@ -1,12 +1,15 @@
 {
-  "name": "sayx",
-  "version": "0.1.0",
+  "name": "@shinshin86/sayx",
+  "version": "0.1.1",
   "description": "Text-to-speech CLI tool powered by @aituber-onair/voice",
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "bin": {
     "sayx": "./dist/cli.js"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "files": [
     "dist"

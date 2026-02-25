@@ -11,7 +11,7 @@ Text-to-speech CLI tool powered by [@aituber-onair/voice](https://www.npmjs.com/
 ### Using npx (no install required)
 
 ```bash
-npx sayx こんにちは
+npx @shinshin86/sayx こんにちは
 ```
 
 By default, `sayx` uses the built-in config (if no config file exists):
@@ -25,8 +25,14 @@ If you want to use a cloud engine (e.g. OpenAI), set up an API key and pass `--e
 ### Global Install
 
 ```bash
-npm install -g sayx
+npm install -g @shinshin86/sayx
 sayx こんにちは
+```
+
+### Local Install
+
+```bash
+npm install @shinshin86/sayx
 ```
 
 ### Local Development
