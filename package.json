@@ -26,7 +26,7 @@
     "voicevox",
     "openai"
   ],
-  "author": "",
+  "author": "shinshin86 <shinshin86npm@gmail.com> (https://github.com/shinshin86)",
   "license": "MIT",
   "engines": {
     "node": ">=20.0.0"

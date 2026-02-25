@@ -1,6 +1,6 @@
 # sayx (日本語版)
 
-![Logo](./images/logo.png)
+![Logo](https://github.com/shinshin86/sayx/raw/main/images/logo.png)
 
 `sayx` は [@aituber-onair/voice](https://www.npmjs.com/package/@aituber-onair/voice) を利用した、テキスト読み上げ CLI ツールです。
 

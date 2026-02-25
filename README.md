@@ -1,6 +1,6 @@
 # sayx
 
-![Logo](./images/logo.png)
+![Logo](https://github.com/shinshin86/sayx/raw/main/images/logo.png)
 
 Text-to-speech CLI tool powered by [@aituber-onair/voice](https://www.npmjs.com/package/@aituber-onair/voice).
 
