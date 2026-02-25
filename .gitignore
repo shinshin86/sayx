@@ -1,0 +1,17 @@
+node_modules/
+dist/
+*.log
+.DS_Store
+*.tgz
+.claude/
+sayx-bench-*/
+**/sayx-bench-*/
+
+# secrets / local config
+.env
+.env.*
+!.env.example
+.npmrc
+.pnpmrc
+.yarnrc
+.yarnrc.yml
