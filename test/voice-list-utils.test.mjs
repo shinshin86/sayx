@@ -9,13 +9,17 @@ function createResolvedOptions(engineType) {
     voicevoxApiUrl: "http://127.0.0.1:50021",
     voicepeakApiUrl: "http://127.0.0.1:20202",
     aivisSpeechApiUrl: "http://127.0.0.1:10101",
+    openAiCompatibleApiUrl: "http://localhost:8880",
+    geminiTtsApiUrl: "https://generativelanguage.googleapis.com",
   };
 }
 
 test("listVoicesWithStatus returns unsupported for engines without list support", async () => {
-  const result = await listVoicesWithStatus(createResolvedOptions("voicepeak"));
-  assert.equal(result.status, "unsupported");
-  assert.deepEqual(result.voices, []);
+  for (const engine of ["voicepeak", "xai", "geminiTts", "openaiCompatible"]) {
+    const result = await listVoicesWithStatus(createResolvedOptions(engine));
+    assert.equal(result.status, "unsupported");
+    assert.deepEqual(result.voices, []);
+  }
 });
 
 test("listVoicesWithStatus returns static voices for openai", async () => {

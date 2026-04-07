@@ -8,6 +8,9 @@ const SUPPORTED_ENGINES: EngineType[] = [
   "voicevox",
   "voicepeak",
   "openai",
+  "xai",
+  "geminiTts",
+  "openaiCompatible",
   "aivisSpeech",
   "aivisCloud",
   "minimax",
@@ -67,6 +70,11 @@ export function resolveOptions(cliOptions: CliOptions): ResolvedOptions {
     voicevoxApiUrl: resolveLocalEngineApiUrl("voicevox", config.default.voicevoxApiUrl),
     voicepeakApiUrl: resolveLocalEngineApiUrl("voicepeak", config.default.voicepeakApiUrl),
     aivisSpeechApiUrl: resolveLocalEngineApiUrl("aivisSpeech", config.default.aivisSpeechApiUrl),
+    openAiCompatibleApiUrl: resolveLocalEngineApiUrl(
+      "openaiCompatible",
+      config.default.openAiCompatibleApiUrl
+    ),
+    geminiTtsApiUrl: config.default.geminiTtsApiUrl,
     speakOptions: preset.speakOptions,
     engineOverrides: preset.engineOverrides,
   };

@@ -3,18 +3,35 @@ import type { EngineOverrides, EngineType, ResolvedOptions } from "../types.js";
 
 export function applyApiUrls(
   target: Partial<VoiceServiceOptions>,
-  options: Pick<ResolvedOptions, "voicevoxApiUrl" | "voicepeakApiUrl" | "aivisSpeechApiUrl">
+  options: Pick<
+    ResolvedOptions,
+    | "voicevoxApiUrl"
+    | "voicepeakApiUrl"
+    | "aivisSpeechApiUrl"
+    | "openAiCompatibleApiUrl"
+    | "geminiTtsApiUrl"
+  >
 ): void {
+  const mutableTarget = target as Record<string, unknown>;
+
   if (options.voicevoxApiUrl) {
-    target.voicevoxApiUrl = options.voicevoxApiUrl;
+    mutableTarget.voicevoxApiUrl = options.voicevoxApiUrl;
   }
 
   if (options.voicepeakApiUrl) {
-    target.voicepeakApiUrl = options.voicepeakApiUrl;
+    mutableTarget.voicepeakApiUrl = options.voicepeakApiUrl;
   }
 
   if (options.aivisSpeechApiUrl) {
-    target.aivisSpeechApiUrl = options.aivisSpeechApiUrl;
+    mutableTarget.aivisSpeechApiUrl = options.aivisSpeechApiUrl;
+  }
+
+  if (options.openAiCompatibleApiUrl) {
+    mutableTarget.openAiCompatibleApiUrl = options.openAiCompatibleApiUrl;
+  }
+
+  if (options.geminiTtsApiUrl) {
+    mutableTarget.geminiTtsApiUrl = options.geminiTtsApiUrl;
   }
 }
 
@@ -28,59 +45,94 @@ export function applyEngineOverrides(
     return;
   }
 
+  const mutableTarget = target as Record<string, unknown>;
+
   switch (engineType) {
     case "voicevox":
       if ("speedScale" in engineOverride && engineOverride.speedScale !== undefined) {
-        target.voicevoxSpeedScale = engineOverride.speedScale;
+        mutableTarget.voicevoxSpeedScale = engineOverride.speedScale;
       }
       if ("pitchScale" in engineOverride && engineOverride.pitchScale !== undefined) {
-        target.voicevoxPitchScale = engineOverride.pitchScale;
+        mutableTarget.voicevoxPitchScale = engineOverride.pitchScale;
       }
       if ("intonationScale" in engineOverride && engineOverride.intonationScale !== undefined) {
-        target.voicevoxIntonationScale = engineOverride.intonationScale;
+        mutableTarget.voicevoxIntonationScale = engineOverride.intonationScale;
       }
       if ("volumeScale" in engineOverride && engineOverride.volumeScale !== undefined) {
-        target.voicevoxVolumeScale = engineOverride.volumeScale;
+        mutableTarget.voicevoxVolumeScale = engineOverride.volumeScale;
       }
       break;
     case "voicepeak":
       if ("speed" in engineOverride && engineOverride.speed !== undefined) {
-        target.voicepeakSpeed = engineOverride.speed;
+        mutableTarget.voicepeakSpeed = engineOverride.speed;
       }
       if ("pitch" in engineOverride && engineOverride.pitch !== undefined) {
-        target.voicepeakPitch = engineOverride.pitch;
+        mutableTarget.voicepeakPitch = engineOverride.pitch;
       }
       break;
     case "openai":
       if ("model" in engineOverride && engineOverride.model !== undefined) {
-        target.openAiModel = engineOverride.model;
+        mutableTarget.openAiModel = engineOverride.model;
       }
       if ("speed" in engineOverride && engineOverride.speed !== undefined) {
-        target.openAiSpeed = engineOverride.speed;
+        mutableTarget.openAiSpeed = engineOverride.speed;
+      }
+      break;
+    case "xai":
+      if ("language" in engineOverride && engineOverride.language !== undefined) {
+        mutableTarget.xaiLanguage = engineOverride.language;
+      }
+      if ("codec" in engineOverride && engineOverride.codec !== undefined) {
+        mutableTarget.xaiCodec = engineOverride.codec;
+      }
+      if ("sampleRate" in engineOverride && engineOverride.sampleRate !== undefined) {
+        mutableTarget.xaiSampleRate = engineOverride.sampleRate;
+      }
+      if ("bitRate" in engineOverride && engineOverride.bitRate !== undefined) {
+        mutableTarget.xaiBitRate = engineOverride.bitRate;
+      }
+      break;
+    case "geminiTts":
+      if ("model" in engineOverride && engineOverride.model !== undefined) {
+        mutableTarget.geminiTtsModel = engineOverride.model;
+      }
+      if ("languageCode" in engineOverride && engineOverride.languageCode !== undefined) {
+        mutableTarget.geminiTtsLanguageCode = engineOverride.languageCode;
+      }
+      if ("prompt" in engineOverride && engineOverride.prompt !== undefined) {
+        mutableTarget.geminiTtsPrompt = engineOverride.prompt;
+      }
+      break;
+    case "openaiCompatible":
+      if ("model" in engineOverride && engineOverride.model !== undefined) {
+        mutableTarget.openAiCompatibleModel = engineOverride.model;
+      }
+      if ("speed" in engineOverride && engineOverride.speed !== undefined) {
+        mutableTarget.openAiCompatibleSpeed = engineOverride.speed;
       }
       break;
     case "aivisSpeech":
       if ("speedScale" in engineOverride && engineOverride.speedScale !== undefined) {
-        target.aivisSpeechSpeedScale = engineOverride.speedScale;
+        mutableTarget.aivisSpeechSpeedScale = engineOverride.speedScale;
       }
       if ("pitchScale" in engineOverride && engineOverride.pitchScale !== undefined) {
-        target.aivisSpeechPitchScale = engineOverride.pitchScale;
+        mutableTarget.aivisSpeechPitchScale = engineOverride.pitchScale;
       }
       break;
     case "aivisCloud":
       if ("speakingRate" in engineOverride && engineOverride.speakingRate !== undefined) {
-        target.aivisCloudSpeakingRate = engineOverride.speakingRate;
+        mutableTarget.aivisCloudSpeakingRate = engineOverride.speakingRate;
       }
       if ("pitch" in engineOverride && engineOverride.pitch !== undefined) {
-        target.aivisCloudPitch = engineOverride.pitch;
+        mutableTarget.aivisCloudPitch = engineOverride.pitch;
       }
       break;
     case "minimax":
       if ("speed" in engineOverride && engineOverride.speed !== undefined) {
-        target.minimaxSpeed = engineOverride.speed;
+        mutableTarget.minimaxSpeed = engineOverride.speed;
       }
       if ("pitch" in engineOverride && engineOverride.pitch !== undefined) {
-        target.minimaxPitch = engineOverride.pitch;
+        mutableTarget.minimaxPitch = engineOverride.pitch;
       }
       break;
   }
