@@ -19,7 +19,8 @@
     "dev": "tsup --watch",
     "typecheck": "tsc --noEmit",
     "test": "npm run build && node --test \"test/**/*.test.mjs\"",
-    "prepublishOnly": "npm run build"
+    "clean": "rm -rf dist",
+    "prepublishOnly": "npm run clean && npm run build"
   },
   "keywords": [
     "tts",
