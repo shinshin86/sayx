@@ -257,11 +257,12 @@ Then open `http://localhost:3000/index.html` (or port 8000 for Python).
 
 Config file uses YAML format. Run `sayx init` to create a default config.
 
-For local engines (`voicevox`, `voicepeak`, `aivisSpeech`), if API URL is not set in config,
+For local engines (`voicevox`, `voicepeak`, `aivisSpeech`, `openaiCompatible`), if API URL is not set in config,
 `sayx` falls back to default local endpoints:
 - `voicevox`: `http://127.0.0.1:50021`
 - `voicepeak`: `http://127.0.0.1:20202`
 - `aivisSpeech`: `http://127.0.0.1:10101`
+- `openaiCompatible`: `http://127.0.0.1:8880`
 
 ### Example Config
 
@@ -281,6 +282,13 @@ presets:
       openai:
         speaker: alloy
         model: tts-1
+      xai:
+        speaker: Zephyr
+      geminiTts:
+        speaker: Kore
+        model: gemini-2.5-flash-preview-tts
+      openaiCompatible:
+        speaker: my-voice
 
   narrator:
     speakOptions:
@@ -306,7 +314,7 @@ Options are resolved in this order (higher priority first):
 ### API Keys
 
 API keys are resolved from config only (no automatic env var discovery).
-Only these engines require API keys: `openai`, `aivisCloud`, `minimax`.
+Only these engines require API keys: `openai`, `aivisCloud`, `minimax`, `xai`, `geminiTts`.
 Local engines like `voicevox`, `voicepeak`, and `aivisSpeech` do not require an API key.
 
 1. **Config file**:
@@ -334,6 +342,9 @@ Local engines like `voicevox`, `voicepeak`, and `aivisSpeech` do not require an 
 | `aivisSpeech` | AIVIS Speech (local) | AIVIS Speech server |
 | `aivisCloud` | AIVIS Cloud API | `apiKey` or `apiKeyEnv` |
 | `minimax` | MiniMax TTS API | `apiKey` or `apiKeyEnv` |
+| `xai` | xAI (Grok) TTS API | `apiKey` or `apiKeyEnv` |
+| `geminiTts` | Google Gemini TTS API | `apiKey` or `apiKeyEnv` |
+| `openaiCompatible` | OpenAI-compatible endpoint | Server running (API key optional) |
 
 ## Troubleshooting
 

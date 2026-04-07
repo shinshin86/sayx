@@ -2,6 +2,9 @@ export type EngineType =
   | "voicevox"
   | "voicepeak"
   | "openai"
+  | "xai"
+  | "geminiTts"
+  | "openaiCompatible"
   | "aivisSpeech"
   | "aivisCloud"
   | "minimax";
@@ -20,6 +23,24 @@ export interface EngineOverrides {
     pitch?: number;
   };
   openai?: {
+    speaker?: string;
+    model?: string;
+    speed?: number;
+  };
+  xai?: {
+    speaker?: string;
+    language?: string;
+    codec?: string;
+    sampleRate?: number;
+    bitRate?: number;
+  };
+  geminiTts?: {
+    speaker?: string;
+    model?: string;
+    languageCode?: string;
+    prompt?: string;
+  };
+  openaiCompatible?: {
     speaker?: string;
     model?: string;
     speed?: number;
@@ -60,6 +81,8 @@ export interface ConfigDefault {
   voicevoxApiUrl?: string;
   voicepeakApiUrl?: string;
   aivisSpeechApiUrl?: string;
+  openAiCompatibleApiUrl?: string;
+  geminiTtsApiUrl?: string;
 }
 
 export interface Config {
@@ -74,6 +97,8 @@ export interface ResolvedOptions {
   voicevoxApiUrl?: string;
   voicepeakApiUrl?: string;
   aivisSpeechApiUrl?: string;
+  openAiCompatibleApiUrl?: string;
+  geminiTtsApiUrl?: string;
   speakOptions?: SpeakOptions;
   engineOverrides?: EngineOverrides;
 }

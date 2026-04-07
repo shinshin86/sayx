@@ -165,6 +165,11 @@ export async function speak(
   applyApiUrls(voiceOptions, options);
   applyEngineOverrides(voiceOptions, options.engineType, options.engineOverrides);
 
+  // For openaiCompatible, speaker is optional - omit default fallback
+  if (options.engineType === "openaiCompatible" && options.speaker === "1") {
+    delete (voiceOptions as unknown as Record<string, unknown>).speaker;
+  }
+
   // Create voice adapter
   const adapter = new VoiceEngineAdapter(voiceOptions);
 
@@ -210,6 +215,8 @@ export async function speak(
         hint = "\nHint: Is VOICEVOX running? Start VOICEVOX and try again.";
       } else if (options.engineType === "voicepeak") {
         hint = "\nHint: Is VOICEPEAK API server running?";
+      } else if (options.engineType === "openaiCompatible") {
+        hint = "\nHint: Is the OpenAI-compatible TTS server running? Default URL: http://localhost:8880";
       } else if (options.engineType === "aivisSpeech") {
         hint = "\nHint: Is AIVIS Speech server running?";
       } else {
@@ -252,6 +259,17 @@ export async function listVoicesWithStatus(options: ResolvedOptions): Promise<Vo
         "nova: Friendly, optimistic voice",
         "shimmer: Clear, professional voice",
       ],
+    };
+  }
+
+  if (
+    options.engineType === "xai" ||
+    options.engineType === "geminiTts" ||
+    options.engineType === "openaiCompatible"
+  ) {
+    return {
+      status: "unsupported",
+      voices: [],
     };
   }
 

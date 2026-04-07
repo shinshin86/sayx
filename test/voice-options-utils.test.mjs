@@ -8,11 +8,15 @@ test("applyApiUrls sets configured endpoint URLs", () => {
     voicevoxApiUrl: "http://127.0.0.1:50021",
     voicepeakApiUrl: "http://127.0.0.1:52001",
     aivisSpeechApiUrl: "http://127.0.0.1:10101",
+    openAiCompatibleApiUrl: "http://localhost:8880",
+    geminiTtsApiUrl: "https://generativelanguage.googleapis.com",
   });
 
   assert.equal(target.voicevoxApiUrl, "http://127.0.0.1:50021");
   assert.equal(target.voicepeakApiUrl, "http://127.0.0.1:52001");
   assert.equal(target.aivisSpeechApiUrl, "http://127.0.0.1:10101");
+  assert.equal(target.openAiCompatibleApiUrl, "http://localhost:8880");
+  assert.equal(target.geminiTtsApiUrl, "https://generativelanguage.googleapis.com");
 });
 
 test("applyEngineOverrides maps voicevox fields", () => {
@@ -69,6 +73,51 @@ test("applyEngineOverrides maps aivisSpeech fields", () => {
 
   assert.equal(target.aivisSpeechSpeedScale, 1.05);
   assert.equal(target.aivisSpeechPitchScale, 0.1);
+});
+
+test("applyEngineOverrides maps xai fields", () => {
+  const target = {};
+  applyEngineOverrides(target, "xai", {
+    xai: {
+      language: "ja",
+      codec: "mp3",
+      sampleRate: 24000,
+      bitRate: 128000,
+    },
+  });
+
+  assert.equal(target.xaiLanguage, "ja");
+  assert.equal(target.xaiCodec, "mp3");
+  assert.equal(target.xaiSampleRate, 24000);
+  assert.equal(target.xaiBitRate, 128000);
+});
+
+test("applyEngineOverrides maps geminiTts fields", () => {
+  const target = {};
+  applyEngineOverrides(target, "geminiTts", {
+    geminiTts: {
+      model: "gemini-2.5-flash-preview-tts",
+      languageCode: "ja-JP",
+      prompt: "calm",
+    },
+  });
+
+  assert.equal(target.geminiTtsModel, "gemini-2.5-flash-preview-tts");
+  assert.equal(target.geminiTtsLanguageCode, "ja-JP");
+  assert.equal(target.geminiTtsPrompt, "calm");
+});
+
+test("applyEngineOverrides maps openaiCompatible fields", () => {
+  const target = {};
+  applyEngineOverrides(target, "openaiCompatible", {
+    openaiCompatible: {
+      model: "tts-1",
+      speed: 1.1,
+    },
+  });
+
+  assert.equal(target.openAiCompatibleModel, "tts-1");
+  assert.equal(target.openAiCompatibleSpeed, 1.1);
 });
 
 test("applyEngineOverrides maps aivisCloud fields", () => {

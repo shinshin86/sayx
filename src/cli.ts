@@ -192,6 +192,14 @@ async function checkLocalEngineReachability(engine: EngineType, resolved: Resolv
     return checkReachabilityCandidates(urls, ["/version", "/speakers", "/"]);
   }
 
+  if (engine === "openaiCompatible") {
+    const urls = getLocalEngineApiUrlCandidates(
+      "openaiCompatible",
+      resolved.openAiCompatibleApiUrl
+    );
+    return checkReachabilityCandidates(urls, ["/v1/models", "/"]);
+  }
+
   return null;
 }
 
@@ -415,7 +423,9 @@ program
       }
 
       console.log(`Config: ${options.config ?? getConfigPath()}`);
-      console.log(`Cloud API key (openai/aivisCloud/minimax): ${apiKey ? "configured" : "not configured"}`);
+      console.log(
+        `Cloud API key (openai/xai/geminiTts/aivisCloud/minimax): ${apiKey ? "configured" : "not configured"}`
+      );
       console.log("");
 
       for (const engine of engines) {

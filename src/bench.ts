@@ -115,6 +115,11 @@ function resolveOptionsForBench(
     voicevoxApiUrl: resolveLocalEngineApiUrl("voicevox", config.default.voicevoxApiUrl),
     voicepeakApiUrl: resolveLocalEngineApiUrl("voicepeak", config.default.voicepeakApiUrl),
     aivisSpeechApiUrl: resolveLocalEngineApiUrl("aivisSpeech", config.default.aivisSpeechApiUrl),
+    openAiCompatibleApiUrl: resolveLocalEngineApiUrl(
+      "openaiCompatible",
+      config.default.openAiCompatibleApiUrl
+    ),
+    geminiTtsApiUrl: config.default.geminiTtsApiUrl,
     speakOptions: preset.speakOptions,
     engineOverrides: preset.engineOverrides,
   };
@@ -212,6 +217,11 @@ async function synthesizeAudio(
       audioBuffer = buffer;
     },
   };
+
+  // For openaiCompatible, speaker is optional - omit default fallback
+  if (fullOptions.engineType === "openaiCompatible" && fullOptions.speaker === "1") {
+    delete (fullOptions as unknown as Record<string, unknown>).speaker;
+  }
 
   const adapter = new VoiceEngineAdapter(fullOptions);
 

@@ -23,6 +23,10 @@ test("resolveLocalEngineApiUrl falls back to built-in default URL", () => {
     resolveLocalEngineApiUrl("aivisSpeech"),
     LOCAL_ENGINE_DEFAULT_URLS.aivisSpeech
   );
+  assert.equal(
+    resolveLocalEngineApiUrl("openaiCompatible"),
+    LOCAL_ENGINE_DEFAULT_URLS.openaiCompatible
+  );
 });
 
 test("resolveLocalEngineApiUrl keeps configured URL and normalizes trailing slash", () => {
@@ -62,8 +66,13 @@ test("resolveOptions applies default local URLs when config omits them", () => {
   const voicevox = resolveOptions({ engine: "voicevox", config: configPath });
   const voicepeak = resolveOptions({ engine: "voicepeak", config: configPath });
   const aivisSpeech = resolveOptions({ engine: "aivisSpeech", config: configPath });
+  const openaiCompatible = resolveOptions({ engine: "openaiCompatible", config: configPath });
 
   assert.equal(voicevox.voicevoxApiUrl, LOCAL_ENGINE_DEFAULT_URLS.voicevox);
   assert.equal(voicepeak.voicepeakApiUrl, LOCAL_ENGINE_DEFAULT_URLS.voicepeak);
   assert.equal(aivisSpeech.aivisSpeechApiUrl, LOCAL_ENGINE_DEFAULT_URLS.aivisSpeech);
+  assert.equal(
+    openaiCompatible.openAiCompatibleApiUrl,
+    LOCAL_ENGINE_DEFAULT_URLS.openaiCompatible
+  );
 });

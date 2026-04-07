@@ -133,6 +133,8 @@ API キーが必要なエンジン:
 - `openai`
 - `aivisCloud`
 - `minimax`
+- `xai`
+- `geminiTts`
 
 設定例:
 
@@ -145,12 +147,13 @@ default:
 export OPENAI_API_KEY=sk-...
 ```
 
-ローカルエンジン（`voicevox`, `voicepeak`, `aivisSpeech`）は、設定ファイルに API URL が未設定でも
+ローカルエンジン（`voicevox`, `voicepeak`, `aivisSpeech`, `openaiCompatible`）は、設定ファイルに API URL が未設定でも
 以下の既定URLに自動フォールバックします。
 
 - `voicevox`: `http://127.0.0.1:50021`
 - `voicepeak`: `http://127.0.0.1:20202`
 - `aivisSpeech`: `http://127.0.0.1:10101`
+- `openaiCompatible`: `http://127.0.0.1:8880`
 
 ## 対応エンジン
 
@@ -162,6 +165,9 @@ export OPENAI_API_KEY=sk-...
 | `aivisSpeech` | AIVIS Speech (ローカル) | AIVIS Speech サーバー |
 | `aivisCloud` | AIVIS Cloud API | `apiKey` または `apiKeyEnv` |
 | `minimax` | MiniMax TTS API | `apiKey` または `apiKeyEnv` |
+| `xai` | xAI (Grok) TTS API | `apiKey` または `apiKeyEnv` |
+| `geminiTts` | Google Gemini TTS API | `apiKey` または `apiKeyEnv` |
+| `openaiCompatible` | OpenAI 互換エンドポイント | サーバー起動（API キー任意） |
 
 ## トラブルシューティング
 
