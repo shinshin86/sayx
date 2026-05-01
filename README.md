@@ -284,6 +284,12 @@ presets:
         model: tts-1
       xai:
         speaker: Zephyr
+      unrealSpeech:
+        speaker: af_bella
+        bitrate: 192k
+      elevenLabs:
+        speaker: JBFqnCBsd6RMkjVDRZzb
+        model: eleven_multilingual_v2
       geminiTts:
         speaker: Kore
         model: gemini-2.5-flash-preview-tts
@@ -314,7 +320,7 @@ Options are resolved in this order (higher priority first):
 ### API Keys
 
 API keys are resolved from config only (no automatic env var discovery).
-Only these engines require API keys: `openai`, `aivisCloud`, `minimax`, `xai`, `geminiTts`.
+Only these engines require API keys: `openai`, `aivisCloud`, `minimax`, `xai`, `unrealSpeech`, `elevenLabs`, `geminiTts`.
 Local engines like `voicevox`, `voicepeak`, and `aivisSpeech` do not require an API key.
 
 1. **Config file**:
@@ -343,6 +349,8 @@ Local engines like `voicevox`, `voicepeak`, and `aivisSpeech` do not require an 
 | `aivisCloud` | AIVIS Cloud API | `apiKey` or `apiKeyEnv` |
 | `minimax` | MiniMax TTS API | `apiKey` or `apiKeyEnv` |
 | `xai` | xAI (Grok) TTS API | `apiKey` or `apiKeyEnv` |
+| `unrealSpeech` | Unreal Speech TTS API | `apiKey` or `apiKeyEnv` |
+| `elevenLabs` | ElevenLabs TTS API | `apiKey` or `apiKeyEnv` |
 | `geminiTts` | Google Gemini TTS API | `apiKey` or `apiKeyEnv` |
 | `openaiCompatible` | OpenAI-compatible endpoint | Server running (API key optional) |
 

@@ -424,7 +424,7 @@ program
 
       console.log(`Config: ${options.config ?? getConfigPath()}`);
       console.log(
-        `Cloud API key (openai/xai/geminiTts/aivisCloud/minimax): ${apiKey ? "configured" : "not configured"}`
+        `Cloud API key (openai/xai/unrealSpeech/elevenLabs/geminiTts/aivisCloud/minimax): ${apiKey ? "configured" : "not configured"}`
       );
       console.log("");
 

@@ -3,6 +3,8 @@ import type { Config, EngineType } from "../types.js";
 export const API_KEY_REQUIRED_ENGINES: EngineType[] = [
   "openai",
   "xai",
+  "unrealSpeech",
+  "elevenLabs",
   "geminiTts",
   "aivisCloud",
   "minimax",

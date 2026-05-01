@@ -3,6 +3,8 @@ export type EngineType =
   | "voicepeak"
   | "openai"
   | "xai"
+  | "unrealSpeech"
+  | "elevenLabs"
   | "geminiTts"
   | "openaiCompatible"
   | "aivisSpeech"
@@ -33,6 +35,31 @@ export interface EngineOverrides {
     codec?: string;
     sampleRate?: number;
     bitRate?: number;
+  };
+  unrealSpeech?: {
+    speaker?: string;
+    bitrate?: string;
+    speed?: number;
+    pitch?: number;
+    codec?: "libmp3lame" | "pcm_mulaw" | "pcm_s16le";
+    temperature?: number;
+  };
+  elevenLabs?: {
+    speaker?: string;
+    model?: string;
+    outputFormat?: string;
+    languageCode?: string;
+    stability?: number;
+    similarityBoost?: number;
+    style?: number;
+    useSpeakerBoost?: boolean;
+    speed?: number;
+    seed?: number;
+    previousText?: string;
+    nextText?: string;
+    applyTextNormalization?: "auto" | "on" | "off";
+    applyLanguageTextNormalization?: boolean;
+    enableLogging?: boolean;
   };
   geminiTts?: {
     speaker?: string;
@@ -83,6 +110,8 @@ export interface ConfigDefault {
   aivisSpeechApiUrl?: string;
   openAiCompatibleApiUrl?: string;
   geminiTtsApiUrl?: string;
+  unrealSpeechApiUrl?: string;
+  elevenLabsApiUrl?: string;
 }
 
 export interface Config {
@@ -99,6 +128,8 @@ export interface ResolvedOptions {
   aivisSpeechApiUrl?: string;
   openAiCompatibleApiUrl?: string;
   geminiTtsApiUrl?: string;
+  unrealSpeechApiUrl?: string;
+  elevenLabsApiUrl?: string;
   speakOptions?: SpeakOptions;
   engineOverrides?: EngineOverrides;
 }
