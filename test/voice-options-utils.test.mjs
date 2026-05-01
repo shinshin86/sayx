@@ -10,6 +10,8 @@ test("applyApiUrls sets configured endpoint URLs", () => {
     aivisSpeechApiUrl: "http://127.0.0.1:10101",
     openAiCompatibleApiUrl: "http://localhost:8880",
     geminiTtsApiUrl: "https://generativelanguage.googleapis.com",
+    unrealSpeechApiUrl: "https://api.example.com/unreal",
+    elevenLabsApiUrl: "https://api.example.com/elevenlabs",
   });
 
   assert.equal(target.voicevoxApiUrl, "http://127.0.0.1:50021");
@@ -17,6 +19,8 @@ test("applyApiUrls sets configured endpoint URLs", () => {
   assert.equal(target.aivisSpeechApiUrl, "http://127.0.0.1:10101");
   assert.equal(target.openAiCompatibleApiUrl, "http://localhost:8880");
   assert.equal(target.geminiTtsApiUrl, "https://generativelanguage.googleapis.com");
+  assert.equal(target.unrealSpeechApiUrl, "https://api.example.com/unreal");
+  assert.equal(target.elevenLabsApiUrl, "https://api.example.com/elevenlabs");
 });
 
 test("applyEngineOverrides maps voicevox fields", () => {
@@ -105,6 +109,62 @@ test("applyEngineOverrides maps geminiTts fields", () => {
   assert.equal(target.geminiTtsModel, "gemini-2.5-flash-preview-tts");
   assert.equal(target.geminiTtsLanguageCode, "ja-JP");
   assert.equal(target.geminiTtsPrompt, "calm");
+});
+
+test("applyEngineOverrides maps unrealSpeech fields", () => {
+  const target = {};
+  applyEngineOverrides(target, "unrealSpeech", {
+    unrealSpeech: {
+      bitrate: "192k",
+      speed: 0.2,
+      pitch: 1.1,
+      codec: "libmp3lame",
+      temperature: 0.25,
+    },
+  });
+
+  assert.equal(target.unrealSpeechBitrate, "192k");
+  assert.equal(target.unrealSpeechSpeed, 0.2);
+  assert.equal(target.unrealSpeechPitch, 1.1);
+  assert.equal(target.unrealSpeechCodec, "libmp3lame");
+  assert.equal(target.unrealSpeechTemperature, 0.25);
+});
+
+test("applyEngineOverrides maps elevenLabs fields", () => {
+  const target = {};
+  applyEngineOverrides(target, "elevenLabs", {
+    elevenLabs: {
+      model: "eleven_multilingual_v2",
+      outputFormat: "mp3_44100_128",
+      languageCode: "ja",
+      stability: 0.5,
+      similarityBoost: 0.75,
+      style: 0.1,
+      useSpeakerBoost: true,
+      speed: 1.05,
+      seed: 123,
+      previousText: "before",
+      nextText: "after",
+      applyTextNormalization: "auto",
+      applyLanguageTextNormalization: true,
+      enableLogging: true,
+    },
+  });
+
+  assert.equal(target.elevenLabsModel, "eleven_multilingual_v2");
+  assert.equal(target.elevenLabsOutputFormat, "mp3_44100_128");
+  assert.equal(target.elevenLabsLanguageCode, "ja");
+  assert.equal(target.elevenLabsStability, 0.5);
+  assert.equal(target.elevenLabsSimilarityBoost, 0.75);
+  assert.equal(target.elevenLabsStyle, 0.1);
+  assert.equal(target.elevenLabsUseSpeakerBoost, true);
+  assert.equal(target.elevenLabsSpeed, 1.05);
+  assert.equal(target.elevenLabsSeed, 123);
+  assert.equal(target.elevenLabsPreviousText, "before");
+  assert.equal(target.elevenLabsNextText, "after");
+  assert.equal(target.elevenLabsApplyTextNormalization, "auto");
+  assert.equal(target.elevenLabsApplyLanguageTextNormalization, true);
+  assert.equal(target.elevenLabsEnableLogging, true);
 });
 
 test("applyEngineOverrides maps openaiCompatible fields", () => {

@@ -10,6 +10,8 @@ export function applyApiUrls(
     | "aivisSpeechApiUrl"
     | "openAiCompatibleApiUrl"
     | "geminiTtsApiUrl"
+    | "unrealSpeechApiUrl"
+    | "elevenLabsApiUrl"
   >
 ): void {
   const mutableTarget = target as Record<string, unknown>;
@@ -32,6 +34,14 @@ export function applyApiUrls(
 
   if (options.geminiTtsApiUrl) {
     mutableTarget.geminiTtsApiUrl = options.geminiTtsApiUrl;
+  }
+
+  if (options.unrealSpeechApiUrl) {
+    mutableTarget.unrealSpeechApiUrl = options.unrealSpeechApiUrl;
+  }
+
+  if (options.elevenLabsApiUrl) {
+    mutableTarget.elevenLabsApiUrl = options.elevenLabsApiUrl;
   }
 }
 
@@ -90,6 +100,75 @@ export function applyEngineOverrides(
       }
       if ("bitRate" in engineOverride && engineOverride.bitRate !== undefined) {
         mutableTarget.xaiBitRate = engineOverride.bitRate;
+      }
+      break;
+    case "unrealSpeech":
+      if ("bitrate" in engineOverride && engineOverride.bitrate !== undefined) {
+        mutableTarget.unrealSpeechBitrate = engineOverride.bitrate;
+      }
+      if ("speed" in engineOverride && engineOverride.speed !== undefined) {
+        mutableTarget.unrealSpeechSpeed = engineOverride.speed;
+      }
+      if ("pitch" in engineOverride && engineOverride.pitch !== undefined) {
+        mutableTarget.unrealSpeechPitch = engineOverride.pitch;
+      }
+      if ("codec" in engineOverride && engineOverride.codec !== undefined) {
+        mutableTarget.unrealSpeechCodec = engineOverride.codec;
+      }
+      if ("temperature" in engineOverride && engineOverride.temperature !== undefined) {
+        mutableTarget.unrealSpeechTemperature = engineOverride.temperature;
+      }
+      break;
+    case "elevenLabs":
+      if ("model" in engineOverride && engineOverride.model !== undefined) {
+        mutableTarget.elevenLabsModel = engineOverride.model;
+      }
+      if ("outputFormat" in engineOverride && engineOverride.outputFormat !== undefined) {
+        mutableTarget.elevenLabsOutputFormat = engineOverride.outputFormat;
+      }
+      if ("languageCode" in engineOverride && engineOverride.languageCode !== undefined) {
+        mutableTarget.elevenLabsLanguageCode = engineOverride.languageCode;
+      }
+      if ("stability" in engineOverride && engineOverride.stability !== undefined) {
+        mutableTarget.elevenLabsStability = engineOverride.stability;
+      }
+      if ("similarityBoost" in engineOverride && engineOverride.similarityBoost !== undefined) {
+        mutableTarget.elevenLabsSimilarityBoost = engineOverride.similarityBoost;
+      }
+      if ("style" in engineOverride && engineOverride.style !== undefined) {
+        mutableTarget.elevenLabsStyle = engineOverride.style;
+      }
+      if ("useSpeakerBoost" in engineOverride && engineOverride.useSpeakerBoost !== undefined) {
+        mutableTarget.elevenLabsUseSpeakerBoost = engineOverride.useSpeakerBoost;
+      }
+      if ("speed" in engineOverride && engineOverride.speed !== undefined) {
+        mutableTarget.elevenLabsSpeed = engineOverride.speed;
+      }
+      if ("seed" in engineOverride && engineOverride.seed !== undefined) {
+        mutableTarget.elevenLabsSeed = engineOverride.seed;
+      }
+      if ("previousText" in engineOverride && engineOverride.previousText !== undefined) {
+        mutableTarget.elevenLabsPreviousText = engineOverride.previousText;
+      }
+      if ("nextText" in engineOverride && engineOverride.nextText !== undefined) {
+        mutableTarget.elevenLabsNextText = engineOverride.nextText;
+      }
+      if (
+        "applyTextNormalization" in engineOverride &&
+        engineOverride.applyTextNormalization !== undefined
+      ) {
+        mutableTarget.elevenLabsApplyTextNormalization =
+          engineOverride.applyTextNormalization;
+      }
+      if (
+        "applyLanguageTextNormalization" in engineOverride &&
+        engineOverride.applyLanguageTextNormalization !== undefined
+      ) {
+        mutableTarget.elevenLabsApplyLanguageTextNormalization =
+          engineOverride.applyLanguageTextNormalization;
+      }
+      if ("enableLogging" in engineOverride && engineOverride.enableLogging !== undefined) {
+        mutableTarget.elevenLabsEnableLogging = engineOverride.enableLogging;
       }
       break;
     case "geminiTts":

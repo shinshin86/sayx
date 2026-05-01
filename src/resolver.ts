@@ -9,6 +9,8 @@ const SUPPORTED_ENGINES: EngineType[] = [
   "voicepeak",
   "openai",
   "xai",
+  "unrealSpeech",
+  "elevenLabs",
   "geminiTts",
   "openaiCompatible",
   "aivisSpeech",
@@ -75,6 +77,8 @@ export function resolveOptions(cliOptions: CliOptions): ResolvedOptions {
       config.default.openAiCompatibleApiUrl
     ),
     geminiTtsApiUrl: config.default.geminiTtsApiUrl,
+    unrealSpeechApiUrl: config.default.unrealSpeechApiUrl,
+    elevenLabsApiUrl: config.default.elevenLabsApiUrl,
     speakOptions: preset.speakOptions,
     engineOverrides: preset.engineOverrides,
   };

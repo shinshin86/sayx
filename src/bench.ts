@@ -120,6 +120,8 @@ function resolveOptionsForBench(
       config.default.openAiCompatibleApiUrl
     ),
     geminiTtsApiUrl: config.default.geminiTtsApiUrl,
+    unrealSpeechApiUrl: config.default.unrealSpeechApiUrl,
+    elevenLabsApiUrl: config.default.elevenLabsApiUrl,
     speakOptions: preset.speakOptions,
     engineOverrides: preset.engineOverrides,
   };

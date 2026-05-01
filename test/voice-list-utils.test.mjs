@@ -15,7 +15,16 @@ function createResolvedOptions(engineType) {
 }
 
 test("listVoicesWithStatus returns unsupported for engines without list support", async () => {
-  for (const engine of ["voicepeak", "xai", "geminiTts", "openaiCompatible"]) {
+  for (const engine of [
+    "voicepeak",
+    "xai",
+    "unrealSpeech",
+    "elevenLabs",
+    "geminiTts",
+    "openaiCompatible",
+    "aivisCloud",
+    "minimax",
+  ]) {
     const result = await listVoicesWithStatus(createResolvedOptions(engine));
     assert.equal(result.status, "unsupported");
     assert.deepEqual(result.voices, []);

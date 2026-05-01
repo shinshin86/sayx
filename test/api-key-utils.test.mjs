@@ -10,6 +10,8 @@ import {
 test("requiresApiKey returns true only for cloud engines needing credentials", () => {
   assert.equal(requiresApiKey("openai"), true);
   assert.equal(requiresApiKey("xai"), true);
+  assert.equal(requiresApiKey("unrealSpeech"), true);
+  assert.equal(requiresApiKey("elevenLabs"), true);
   assert.equal(requiresApiKey("geminiTts"), true);
   assert.equal(requiresApiKey("aivisCloud"), true);
   assert.equal(requiresApiKey("minimax"), true);

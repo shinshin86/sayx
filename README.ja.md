@@ -134,6 +134,8 @@ API キーが必要なエンジン:
 - `aivisCloud`
 - `minimax`
 - `xai`
+- `unrealSpeech`
+- `elevenLabs`
 - `geminiTts`
 
 設定例:
@@ -166,6 +168,8 @@ export OPENAI_API_KEY=sk-...
 | `aivisCloud` | AIVIS Cloud API | `apiKey` または `apiKeyEnv` |
 | `minimax` | MiniMax TTS API | `apiKey` または `apiKeyEnv` |
 | `xai` | xAI (Grok) TTS API | `apiKey` または `apiKeyEnv` |
+| `unrealSpeech` | Unreal Speech TTS API | `apiKey` または `apiKeyEnv` |
+| `elevenLabs` | ElevenLabs TTS API | `apiKey` または `apiKeyEnv` |
 | `geminiTts` | Google Gemini TTS API | `apiKey` または `apiKeyEnv` |
 | `openaiCompatible` | OpenAI 互換エンドポイント | サーバー起動（API キー任意） |
 
