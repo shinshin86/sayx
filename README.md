@@ -290,6 +290,9 @@ presets:
       elevenLabs:
         speaker: JBFqnCBsd6RMkjVDRZzb
         model: eleven_multilingual_v2
+      inworld:
+        speaker: Ashley
+        model: inworld-tts-2
       geminiTts:
         speaker: Kore
         model: gemini-2.5-flash-preview-tts
@@ -320,7 +323,7 @@ Options are resolved in this order (higher priority first):
 ### API Keys
 
 API keys are resolved from config only (no automatic env var discovery).
-Only these engines require API keys: `openai`, `aivisCloud`, `minimax`, `xai`, `unrealSpeech`, `elevenLabs`, `geminiTts`.
+Only these engines require API keys: `openai`, `aivisCloud`, `minimax`, `xai`, `unrealSpeech`, `elevenLabs`, `inworld`, `geminiTts`.
 Local engines like `voicevox`, `voicepeak`, and `aivisSpeech` do not require an API key.
 
 1. **Config file**:
@@ -351,6 +354,7 @@ Local engines like `voicevox`, `voicepeak`, and `aivisSpeech` do not require an 
 | `xai` | xAI (Grok) TTS API | `apiKey` or `apiKeyEnv` |
 | `unrealSpeech` | Unreal Speech TTS API | `apiKey` or `apiKeyEnv` |
 | `elevenLabs` | ElevenLabs TTS API | `apiKey` or `apiKeyEnv` |
+| `inworld` | Inworld TTS API | `apiKey` or `apiKeyEnv` |
 | `geminiTts` | Google Gemini TTS API | `apiKey` or `apiKeyEnv` |
 | `openaiCompatible` | OpenAI-compatible endpoint | Server running (API key optional) |
 

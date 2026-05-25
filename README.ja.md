@@ -136,6 +136,7 @@ API キーが必要なエンジン:
 - `xai`
 - `unrealSpeech`
 - `elevenLabs`
+- `inworld`
 - `geminiTts`
 
 設定例:
@@ -170,6 +171,7 @@ export OPENAI_API_KEY=sk-...
 | `xai` | xAI (Grok) TTS API | `apiKey` または `apiKeyEnv` |
 | `unrealSpeech` | Unreal Speech TTS API | `apiKey` または `apiKeyEnv` |
 | `elevenLabs` | ElevenLabs TTS API | `apiKey` または `apiKeyEnv` |
+| `inworld` | Inworld TTS API | `apiKey` または `apiKeyEnv` |
 | `geminiTts` | Google Gemini TTS API | `apiKey` または `apiKeyEnv` |
 | `openaiCompatible` | OpenAI 互換エンドポイント | サーバー起動（API キー任意） |
 

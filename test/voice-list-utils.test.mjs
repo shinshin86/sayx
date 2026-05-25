@@ -20,6 +20,7 @@ test("listVoicesWithStatus returns unsupported for engines without list support"
     "xai",
     "unrealSpeech",
     "elevenLabs",
+    "inworld",
     "geminiTts",
     "openaiCompatible",
     "aivisCloud",
