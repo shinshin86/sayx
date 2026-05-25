@@ -264,6 +264,7 @@ export async function listVoicesWithStatus(options: ResolvedOptions): Promise<Vo
 
   if (
     options.engineType === "xai" ||
+    options.engineType === "inworld" ||
     options.engineType === "geminiTts" ||
     options.engineType === "openaiCompatible"
   ) {

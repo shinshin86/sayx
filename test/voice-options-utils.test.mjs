@@ -12,6 +12,7 @@ test("applyApiUrls sets configured endpoint URLs", () => {
     geminiTtsApiUrl: "https://generativelanguage.googleapis.com",
     unrealSpeechApiUrl: "https://api.example.com/unreal",
     elevenLabsApiUrl: "https://api.example.com/elevenlabs",
+    inworldApiUrl: "https://api.example.com/inworld",
   });
 
   assert.equal(target.voicevoxApiUrl, "http://127.0.0.1:50021");
@@ -21,6 +22,7 @@ test("applyApiUrls sets configured endpoint URLs", () => {
   assert.equal(target.geminiTtsApiUrl, "https://generativelanguage.googleapis.com");
   assert.equal(target.unrealSpeechApiUrl, "https://api.example.com/unreal");
   assert.equal(target.elevenLabsApiUrl, "https://api.example.com/elevenlabs");
+  assert.equal(target.inworldApiUrl, "https://api.example.com/inworld");
 });
 
 test("applyEngineOverrides maps voicevox fields", () => {
@@ -165,6 +167,31 @@ test("applyEngineOverrides maps elevenLabs fields", () => {
   assert.equal(target.elevenLabsApplyTextNormalization, "auto");
   assert.equal(target.elevenLabsApplyLanguageTextNormalization, true);
   assert.equal(target.elevenLabsEnableLogging, true);
+});
+
+test("applyEngineOverrides maps inworld fields", () => {
+  const target = {};
+  applyEngineOverrides(target, "inworld", {
+    inworld: {
+      model: "inworld-tts-2",
+      audioEncoding: "MP3",
+      sampleRateHertz: 48000,
+      bitRate: 128000,
+      speakingRate: 1.05,
+      language: "ja-JP",
+      deliveryMode: "BALANCED",
+      temperature: 0.4,
+    },
+  });
+
+  assert.equal(target.inworldModel, "inworld-tts-2");
+  assert.equal(target.inworldAudioEncoding, "MP3");
+  assert.equal(target.inworldSampleRateHertz, 48000);
+  assert.equal(target.inworldBitRate, 128000);
+  assert.equal(target.inworldSpeakingRate, 1.05);
+  assert.equal(target.inworldLanguage, "ja-JP");
+  assert.equal(target.inworldDeliveryMode, "BALANCED");
+  assert.equal(target.inworldTemperature, 0.4);
 });
 
 test("applyEngineOverrides maps openaiCompatible fields", () => {

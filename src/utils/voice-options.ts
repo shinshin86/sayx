@@ -12,6 +12,7 @@ export function applyApiUrls(
     | "geminiTtsApiUrl"
     | "unrealSpeechApiUrl"
     | "elevenLabsApiUrl"
+    | "inworldApiUrl"
   >
 ): void {
   const mutableTarget = target as Record<string, unknown>;
@@ -42,6 +43,10 @@ export function applyApiUrls(
 
   if (options.elevenLabsApiUrl) {
     mutableTarget.elevenLabsApiUrl = options.elevenLabsApiUrl;
+  }
+
+  if (options.inworldApiUrl) {
+    mutableTarget.inworldApiUrl = options.inworldApiUrl;
   }
 }
 
@@ -169,6 +174,35 @@ export function applyEngineOverrides(
       }
       if ("enableLogging" in engineOverride && engineOverride.enableLogging !== undefined) {
         mutableTarget.elevenLabsEnableLogging = engineOverride.enableLogging;
+      }
+      break;
+    case "inworld":
+      if ("model" in engineOverride && engineOverride.model !== undefined) {
+        mutableTarget.inworldModel = engineOverride.model;
+      }
+      if ("audioEncoding" in engineOverride && engineOverride.audioEncoding !== undefined) {
+        mutableTarget.inworldAudioEncoding = engineOverride.audioEncoding;
+      }
+      if (
+        "sampleRateHertz" in engineOverride &&
+        engineOverride.sampleRateHertz !== undefined
+      ) {
+        mutableTarget.inworldSampleRateHertz = engineOverride.sampleRateHertz;
+      }
+      if ("bitRate" in engineOverride && engineOverride.bitRate !== undefined) {
+        mutableTarget.inworldBitRate = engineOverride.bitRate;
+      }
+      if ("speakingRate" in engineOverride && engineOverride.speakingRate !== undefined) {
+        mutableTarget.inworldSpeakingRate = engineOverride.speakingRate;
+      }
+      if ("language" in engineOverride && engineOverride.language !== undefined) {
+        mutableTarget.inworldLanguage = engineOverride.language;
+      }
+      if ("deliveryMode" in engineOverride && engineOverride.deliveryMode !== undefined) {
+        mutableTarget.inworldDeliveryMode = engineOverride.deliveryMode;
+      }
+      if ("temperature" in engineOverride && engineOverride.temperature !== undefined) {
+        mutableTarget.inworldTemperature = engineOverride.temperature;
       }
       break;
     case "geminiTts":

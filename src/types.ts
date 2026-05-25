@@ -5,6 +5,7 @@ export type EngineType =
   | "xai"
   | "unrealSpeech"
   | "elevenLabs"
+  | "inworld"
   | "geminiTts"
   | "openaiCompatible"
   | "aivisSpeech"
@@ -61,6 +62,17 @@ export interface EngineOverrides {
     applyLanguageTextNormalization?: boolean;
     enableLogging?: boolean;
   };
+  inworld?: {
+    speaker?: string;
+    model?: string;
+    audioEncoding?: "MP3" | "OGG_OPUS" | "FLAC" | "LINEAR16" | "WAV" | "PCM" | "ALAW" | "MULAW";
+    sampleRateHertz?: number;
+    bitRate?: number;
+    speakingRate?: number;
+    language?: string;
+    deliveryMode?: "STABLE" | "BALANCED" | "CREATIVE";
+    temperature?: number;
+  };
   geminiTts?: {
     speaker?: string;
     model?: string;
@@ -112,6 +124,7 @@ export interface ConfigDefault {
   geminiTtsApiUrl?: string;
   unrealSpeechApiUrl?: string;
   elevenLabsApiUrl?: string;
+  inworldApiUrl?: string;
 }
 
 export interface Config {
@@ -130,6 +143,7 @@ export interface ResolvedOptions {
   geminiTtsApiUrl?: string;
   unrealSpeechApiUrl?: string;
   elevenLabsApiUrl?: string;
+  inworldApiUrl?: string;
   speakOptions?: SpeakOptions;
   engineOverrides?: EngineOverrides;
 }

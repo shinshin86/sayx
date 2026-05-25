@@ -5,6 +5,7 @@ export const API_KEY_REQUIRED_ENGINES: EngineType[] = [
   "xai",
   "unrealSpeech",
   "elevenLabs",
+  "inworld",
   "geminiTts",
   "aivisCloud",
   "minimax",
