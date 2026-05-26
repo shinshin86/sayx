@@ -8,7 +8,7 @@
 
 A single text-to-speech CLI that wraps **12 TTS engines** — both local (VOICEVOX, VOICEPEAK, AivisSpeech, …) and cloud (OpenAI, ElevenLabs, Gemini, …). Speak text, pipe stdin, save audio, and benchmark engines side-by-side from the command line.
 
-Powered by [@aituber-onair/voice](https://www.npmjs.com/package/@aituber-onair/voice).
+sayx is a thin CLI on top of [@aituber-onair/voice](https://www.npmjs.com/package/@aituber-onair/voice), a unified voice synthesis library originally built for the [AITuber OnAir](https://aituberonair.com) project. The multi-engine support and the speaker/preset model come from that library — sayx wraps it for command-line use, adds a YAML config, file output, and the `bench` comparison report.
 
 - Japanese documentation: [README.ja.md](./README.ja.md)
 

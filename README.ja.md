@@ -8,7 +8,7 @@
 
 **12 種類の TTS エンジン**（ローカル: VOICEVOX, VOICEPEAK, AivisSpeech, … / クラウド: OpenAI, ElevenLabs, Gemini, …）を 1 つの CLI で扱えるテキスト読み上げツールです。テキスト発話、stdin パイプ、音声ファイル保存、エンジン横断のベンチマークまでをコマンドラインだけで完結できます。
 
-[@aituber-onair/voice](https://www.npmjs.com/package/@aituber-onair/voice) を利用しています。
+sayx は [@aituber-onair/voice](https://www.npmjs.com/package/@aituber-onair/voice) を CLI として薄くラップしたツールです。`@aituber-onair/voice` は [AITuber OnAir](https://aituberonair.com) プロジェクト発の音声合成ライブラリで、複数 TTS エンジンを統一インターフェースで扱うためのものです。sayx の多エンジン対応や話者・プリセットの考え方はこのライブラリ由来で、そこに YAML 設定、ファイル出力、`bench` レポートを追加してコマンドラインから使えるようにしています。
 
 - English documentation: [README.md](./README.md)
 
