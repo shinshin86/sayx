@@ -2,9 +2,45 @@
 
 ![Logo](https://github.com/shinshin86/sayx/raw/main/images/logo.png)
 
-Text-to-speech CLI tool powered by [@aituber-onair/voice](https://www.npmjs.com/package/@aituber-onair/voice).
+[![npm version](https://img.shields.io/npm/v/@shinshin86/sayx.svg)](https://www.npmjs.com/package/@shinshin86/sayx)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Node](https://img.shields.io/node/v/@shinshin86/sayx.svg)](https://nodejs.org)
+
+A single text-to-speech CLI that wraps **12 TTS engines** — both local (VOICEVOX, VOICEPEAK, AivisSpeech, …) and cloud (OpenAI, ElevenLabs, Gemini, …). Speak text, pipe stdin, save audio, and benchmark engines side-by-side from the command line.
+
+Powered by [@aituber-onair/voice](https://www.npmjs.com/package/@aituber-onair/voice).
 
 - Japanese documentation: [README.ja.md](./README.ja.md)
+
+## ✨ Features
+
+- **12 TTS engines, one CLI**: VOICEVOX, VOICEPEAK, AivisSpeech, AIVIS Cloud, OpenAI, ElevenLabs, Gemini TTS, MiniMax, xAI (Grok), Unreal Speech, Inworld, and any OpenAI-compatible endpoint.
+- **Local and cloud, mixed freely**: Run fully offline with local engines (no API key required), or call cloud APIs — switch with `--engine`.
+- **Pipe-friendly**: `echo "hello" | sayx` or `cat message.txt | sayx`.
+- **Presets in YAML**: Define reusable voice configurations with per-engine overrides, switch with `--preset`.
+- **Built-in benchmark**: `sayx bench` runs the same text across multiple engines/presets and generates an interactive HTML report with playable samples.
+- **AI agent / CI ready**: Deterministic exit codes, `--out` / `--no-play` for headless use, and `sayx doctor` for health checks.
+- **Auto-detected output format**: Pass `--out ./file` without an extension — sayx detects the synthesized audio format and appends the right extension automatically.
+
+## 🎯 Use Cases
+
+- **Choose a TTS engine** for your project by listening to all of them side-by-side with `sayx bench`.
+- **Give a voice to AI agents** through a stable, scriptable CLI surface.
+- **Generate audio in CI / cron / batch scripts** with `--no-play --out`.
+- **Quick desktop TTS** for notifications, reminders, or shell aliases.
+
+## 📚 Table of Contents
+
+- [Quick Start](#quick-start)
+- [Requirements](#requirements)
+- [Usage](#usage)
+- [For AI Agents](#for-ai-agents)
+- [Commands](#commands)
+- [Benchmark (Compare Engines/Presets)](#benchmark-compare-enginespresets)
+- [Configuration](#configuration)
+- [Supported Engines](#supported-engines)
+- [Troubleshooting](#troubleshooting)
+- [License](#license)
 
 ## Quick Start
 
@@ -102,6 +138,12 @@ sayx "Hello" --engine openai --speaker alloy
 sayx "Hello" --preset narrator
 ```
 
+### Output File Behavior
+
+- `--out <path>` saves synthesized audio to the target path.
+- If `<path>` has no extension, `sayx` detects the generated format and appends the extension automatically.
+- Use `--no-play` if you want file output only.
+
 ## For AI Agents
 
 `sayx` is designed for command-based automation, so agents can chain small CLI actions safely.
@@ -172,11 +214,13 @@ Main commands and what they do:
 - `sayx doctor --verbose`:
   Includes detailed voice entries when available.
 - `sayx bench ...`:
-  Runs benchmark jobs across engine/preset combinations and generates reports.
+  Runs benchmark jobs across engine/preset combinations and generates reports (see [Benchmark](#benchmark-compare-enginespresets)).
 
-### Benchmark (Compare Engines/Presets)
+## Benchmark (Compare Engines/Presets)
 
-Examples:
+`sayx bench` runs the same input text through multiple engines and/or presets in one shot, saves each rendered sample, and emits an interactive HTML report so you can A/B them in the browser.
+
+### Examples
 
 ```bash
 # Basic usage - uses default engine and preset
@@ -204,7 +248,7 @@ sayx bench "Hello" --no-html
 sayx bench "Hello" --concurrency 4
 ```
 
-#### Bench Output
+### Bench Output
 
 By default, benchmark results are saved to `./sayx-bench-YYYYMMDD-HHMMSS/`:
 
@@ -220,7 +264,7 @@ sayx-bench-20240115-143022/
         └── default.mp3
 ```
 
-#### Viewing the Report
+### Viewing the Report
 
 Open `index.html` directly in your browser. If audio doesn't play due to browser security restrictions, run a local server:
 
@@ -234,7 +278,7 @@ python -m http.server 8000 -d ./sayx-bench-20240115-143022
 
 Then open `http://localhost:3000/index.html` (or port 8000 for Python).
 
-#### Bench Options
+### Bench Options
 
 | Option | Description | Default |
 |--------|-------------|---------|
@@ -246,12 +290,6 @@ Then open `http://localhost:3000/index.html` (or port 8000 for Python).
 | `--no-html` | Skip HTML, JSON only | Generate both |
 | `--config <path>` | Config file path | Default location |
 | `-s, --speaker` | Override speaker | From config/preset |
-
-### Output File Behavior
-
-- `--out <path>` saves synthesized audio to the target path.
-- If `<path>` has no extension, `sayx` detects the generated format and appends the extension automatically.
-- Use `--no-play` if you want file output only.
 
 ## Configuration
 
