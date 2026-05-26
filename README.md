@@ -160,8 +160,10 @@ sayx "Hello" --preset narrator
    ```
 3. Speak with an explicit speaker ID:
    ```bash
-   sayx "Hello from agent" --engine aivisSpeech --speaker 888753760
+   sayx "Hello from agent" --engine aivisSpeech --speaker 888753760  # まお (ノーマル)
    ```
+
+> Speaker IDs in AivisSpeech are tied to the models you have installed locally — `888753760` happens to map to **まお (ノーマル)** on the author's environment. Run `sayx list voices --engine aivisSpeech` to find the IDs available on your machine.
 
 ### Example: Random AivisSpeech Voice (2-step)
 
@@ -180,7 +182,7 @@ sayx "Hello from random AivisSpeech voice" --engine aivisSpeech --speaker "$VOIC
 Use file output mode when running in non-interactive environments:
 
 ```bash
-sayx "CI speech test" --engine aivisSpeech --speaker 888753760 --out ./out/sample --no-play
+sayx "CI speech test" --engine aivisSpeech --speaker 888753760 --out ./out/sample --no-play  # まお (ノーマル)
 ```
 
 ### Exit Codes for Automation

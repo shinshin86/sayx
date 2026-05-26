@@ -161,8 +161,10 @@ sayx "こんにちは" --preset narrator
    ```
 3. 話者 ID を明示して発話:
    ```bash
-   sayx "こんにちは（agent）" --engine aivisSpeech --speaker 888753760
+   sayx "こんにちは（agent）" --engine aivisSpeech --speaker 888753760  # まお (ノーマル)
    ```
+
+> AivisSpeech の話者 ID はローカルにインストールされているモデルに依存します。例で使用している `888753760` は作者の環境では **まお (ノーマル)** に対応します。手元の環境で利用可能な ID は `sayx list voices --engine aivisSpeech` で確認してください。
 
 ### 例: AivisSpeech の声をランダムに選んで発話（2 段階）
 
@@ -181,7 +183,7 @@ sayx "ランダム音声テストです" --engine aivisSpeech --speaker "$VOICE_
 非対話環境では保存専用モードを使ってください:
 
 ```bash
-sayx "CI speech test" --engine aivisSpeech --speaker 888753760 --out ./out/sample --no-play
+sayx "CI speech test" --engine aivisSpeech --speaker 888753760 --out ./out/sample --no-play  # まお (ノーマル)
 ```
 
 ### 自動化向け終了コード

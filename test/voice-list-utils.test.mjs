@@ -59,7 +59,7 @@ test("listVoicesWithStatus returns parsed voices for aivisSpeech", async (t) => 
         async json() {
           return [
             {
-              name: "Anneli",
+              name: "まお",
               styles: [{ id: 888753760, name: "ノーマル" }],
             },
           ];
@@ -78,7 +78,7 @@ test("listVoicesWithStatus returns parsed voices for aivisSpeech", async (t) => 
 
   const result = await listVoicesWithStatus(createResolvedOptions("aivisSpeech"));
   assert.equal(result.status, "ok");
-  assert.equal(result.voices.includes("888753760: Anneli (ノーマル)"), true);
+  assert.equal(result.voices.includes("888753760: まお (ノーマル)"), true);
 });
 
 test("listVoices keeps compatibility and returns null on unavailable", async (t) => {
